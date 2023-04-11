@@ -21,6 +21,7 @@ cursor.execute(
 )
 
 cursor.execute(
+
         """CREATE TABLE IF NOT EXISTS categories (
   id INT NOT NULL PRIMARY KEY,
   name VARCHAR(255) NOT NULL
@@ -56,6 +57,7 @@ cursor.execute(
 
 )
 
+#Select utilizando uma terceira tabela auxiliar, usando artificio do alias AS, para realizar o join e sum e gerar o resultado esperado no problema.
 
 sql="""
         SELECT categories.name, SUM(products.amount) AS sum
@@ -63,6 +65,7 @@ sql="""
         INNER JOIN categories ON products.id_categories = categories.id
         GROUP BY categories.name;
   """
+
 resultados = cursor.execute(sql)
 for resultado in resultados:
     print(resultados)
